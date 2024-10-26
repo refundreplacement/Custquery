@@ -20,7 +20,7 @@
             var customerCode = document.getElementById('customerCode').value;
 
             // Replace this URL with your deployed Google Apps Script Web App URL
-            var scriptUrl = 'https://script.google.com/macros/s/AKfycbyO6Z7kRE5u3UNQvI1ykB6AthqY9vvK7q3bkEguKGWhr_e-mF58djwk5QJsOj6nSZL8/exec';
+            var scriptUrl = 'https://refundreplacement.github.io/Custquery/';
 
             // Fetch status from Google Apps Script
             fetch(scriptUrl + '?customerCode=' + encodeURIComponent(customerCode))
