@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Status Checker</title>
+</head>
+<body>
+    <h1>Check Customer Status</h1>
+    <form id="statusForm">
+        <label for="customerCode">Customer Code:</label>
+        <input type="text" id="customerCode" name="customerCode" required>
+        <button type="submit">Check Status</button>
+    </form>
+    <p id="statusResult"></p>
+
+    <script>
+        document.getElementById('statusForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            var customerCode = document.getElementById('customerCode').value;
+
+            // Replace this URL with your deployed Google Apps Script Web App URL
+            var scriptUrl = 'https://script.google.com/macros/s/AKfycbyO6Z7kRE5u3UNQvI1ykB6AthqY9vvK7q3bkEguKGWhr_e-mF58djwk5QJsOj6nSZL8/exec';
+
+            // Fetch status from Google Apps Script
+            fetch(scriptUrl + '?customerCode=' + encodeURIComponent(customerCode))
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('statusResult').innerText = 'Overall Status: ' + data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('statusResult').innerText = 'Error fetching status';
+                });
+        });
+    </script>
+</body>
+</html>
